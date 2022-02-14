@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  api:
+    build: .
+    container_name: familysub_bot-api
+    volumes:
+      - .:/familysub_bot
+      - bundle_cache:/bundle_cache
+    ports:
+      - 3000:3000
+    environment:
+      - BUNDLE_PATH=/bundle_cache
+      - GEM_HOME=/bundle_cache
+      - GEM_PATH=/bundle_cache:/usr/local/bundle
+    command: bash -c "ruby main.rb"
+    env_file:
+      - ./.env
+
+volumes:
+  bundle_cache:
