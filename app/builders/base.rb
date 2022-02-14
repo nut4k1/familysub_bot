@@ -1,0 +1,2 @@
+class Builders::Base
+end

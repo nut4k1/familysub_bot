@@ -13,7 +13,7 @@ services:
       - BUNDLE_PATH=/bundle_cache
       - GEM_HOME=/bundle_cache
       - GEM_PATH=/bundle_cache:/usr/local/bundle
-    command: bash -c "ruby main.rb"
+    command: bash -c "ruby app/main.rb"
     env_file:
       - ./.env
 
