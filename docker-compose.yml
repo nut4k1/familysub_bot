@@ -14,6 +14,7 @@ services:
       - GEM_HOME=/bundle_cache
       - GEM_PATH=/bundle_cache:/usr/local/bundle
     command: bash -c "ruby app/main.rb"
+    # command: bash -c "ruby app/scripts/tg_image_uploader.rb"
     env_file:
       - ./.env
 
