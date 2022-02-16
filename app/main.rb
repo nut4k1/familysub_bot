@@ -14,9 +14,9 @@ Telegram::Bot::Client.run(ENV['TELEGRAM_BOT_TOKEN']) do |bot|
     case message
     when Telegram::Bot::Types::CallbackQuery
       if (message.data.size == 7)
-        text = Builders::ResultBuilder.call(callback_data: message.data)
+        text, image_id = Builders::ResultBuilder.call(callback_data: message.data)
 
-        bot.api.send_message(chat_id: message.from.id, text: text)
+        bot.api.send_photo(chat_id: message.from.id, caption: text, photo: image_id)
       elsif (message.data.size == 1)
         _, markup = Builders::QuestionBuilder.call(question: QUESTIONS[message.data.size], callback_data: message.data)
         file_a_id = 'AgACAgIAAxkDAAIBWGIKje3GPcn5Vx6zKoQMQcPvrU-MAAJRvDEbQjRQSJuRm8i1--SHAQADAgADcwADIwQ'
@@ -24,12 +24,6 @@ Telegram::Bot::Client.run(ENV['TELEGRAM_BOT_TOKEN']) do |bot|
         file_c_id = 'AgACAgIAAxkDAAIBXWIKj2My4QNWyuaBFNqtyeIc06YiAAJlvDEbQjRQSBIy4b0cHT_PAQADAgADcwADIwQ'
         file_d_id = 'AgACAgIAAxkDAAIBXmIKj2TafyLluRwvM9Ia63s8SX4gAAJmvDEbQjRQSGFoLfwU7XZcAQADAgADcwADIwQ'
         file_e_id = 'AgACAgIAAxkDAAIBX2IKj2Xh_6uKQHC_TMbFoDQHBrmvAAJnvDEbQjRQSJMu4njyh_3RAQADAgADcwADIwQ'
-        # p bot.api.send_photo(chat_id: message.from.id, caption: 'A) За любимым делом', photo: Faraday::UploadIO.new('/familysub_bot/vendor/images/A.jpg', 'image/jpg'))
-        # p bot.api.send_photo(chat_id: message.from.id, caption: 'A) За любимым делом', photo: Faraday::UploadIO.new('/familysub_bot/vendor/images/B.jpg', 'image/jpg'))['result']['photo'].first['file_id']
-        # p bot.api.send_photo(chat_id: message.from.id, caption: 'A) За любимым делом', photo: Faraday::UploadIO.new('/familysub_bot/vendor/images/C.jpg', 'image/jpg'))['result']['photo'].first['file_id']
-        # p bot.api.send_photo(chat_id: message.from.id, caption: 'A) За любимым делом', photo: Faraday::UploadIO.new('/familysub_bot/vendor/images/D.jpg', 'image/jpg'))['result']['photo'].first['file_id']
-        # p bot.api.send_photo(chat_id: message.from.id, caption: 'A) За любимым делом', photo: Faraday::UploadIO.new('/familysub_bot/vendor/images/E.jpg', 'image/jpg'))['result']['photo'].first['file_id']
-        # p bot.api.send_photo(chat_id: message.from.id, caption: 'A) За любимым делом', photo: file_id)['result']['photo'].first['file_id']
 
         bot.api.sendMediaGroup(
           chat_id: message.from.id,
@@ -57,6 +51,7 @@ Telegram::Bot::Client.run(ENV['TELEGRAM_BOT_TOKEN']) do |bot|
         kb = [
           Telegram::Bot::Types::KeyboardButton.new(text: 'Start test'),
         ]
+        p message.chat.id
         markup = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: kb)
         bot.api.send_message(chat_id: message.chat.id, text: "Please, use button to start a test", reply_markup: markup)
       end

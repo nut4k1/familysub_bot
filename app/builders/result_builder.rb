@@ -17,8 +17,9 @@ module Builders
       build_slug
       build_name
       build_description
+      image_id = find_image_id
   
-      "Ты прям #{name}! #{description}"
+      ["Ты прям #{name}! #{description}", image_id]
     end
 
     private
@@ -48,6 +49,13 @@ module Builders
 
     def build_description
       @description = descriptions[name]
+    end
+
+    def find_image_id
+      image_ids_file = File.open("/familysub_bot/vendor/image_ids.json")
+      data = JSON.load(image_ids_file)
+
+      data[@name]
     end
   end
 end
