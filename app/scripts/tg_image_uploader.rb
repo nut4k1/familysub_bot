@@ -2,6 +2,11 @@ require 'telegram/bot'
 
 CHAT_ID=39946793
 IMAGE_PATHS=[
+  # "/familysub_bot/vendor/images/a.png",
+  # "/familysub_bot/vendor/images/b.png",
+  # "/familysub_bot/vendor/images/c.png",
+  # "/familysub_bot/vendor/images/d.png",
+  # "/familysub_bot/vendor/images/e.png",
   "/familysub_bot/vendor/images/historic_people/босх.jpg",
   "/familysub_bot/vendor/images/historic_people/ганди.jpg",
   "/familysub_bot/vendor/images/historic_people/давинчи.jpg",
@@ -14,7 +19,7 @@ IMAGE_PATHS=[
   "/familysub_bot/vendor/images/historic_people/шоу.jpg",
   "/familysub_bot/vendor/images/historic_people/энштейн.jpg",
 ]
-IMAGE_EXT='image/jpg'
+IMAGE_EXT='image/png'
 
 Telegram::Bot::Client.run(ENV['TELEGRAM_BOT_TOKEN']) do |bot|
   bot.logger.info('Tg image uploader has been started')

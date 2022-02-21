@@ -18,12 +18,18 @@ Telegram::Bot::Client.run(ENV['TELEGRAM_BOT_TOKEN']) do |bot|
 
         bot.api.send_photo(chat_id: message.from.id, caption: text, photo: image_id)
       elsif (message.data.size == 1)
-        _, markup = Builders::QuestionBuilder.call(question: QUESTIONS[message.data.size], callback_data: message.data)
-        file_a_id = 'AgACAgIAAxkDAAIBWGIKje3GPcn5Vx6zKoQMQcPvrU-MAAJRvDEbQjRQSJuRm8i1--SHAQADAgADcwADIwQ'
-        file_b_id = 'AgACAgIAAxkDAAIBXGIKj2LZgEM5fFeVndbsRUxW13SHAAJkvDEbQjRQSGINIpgW3SlbAQADAgADcwADIwQ'
-        file_c_id = 'AgACAgIAAxkDAAIBXWIKj2My4QNWyuaBFNqtyeIc06YiAAJlvDEbQjRQSBIy4b0cHT_PAQADAgADcwADIwQ'
-        file_d_id = 'AgACAgIAAxkDAAIBXmIKj2TafyLluRwvM9Ia63s8SX4gAAJmvDEbQjRQSGFoLfwU7XZcAQADAgADcwADIwQ'
-        file_e_id = 'AgACAgIAAxkDAAIBX2IKj2Xh_6uKQHC_TMbFoDQHBrmvAAJnvDEbQjRQSJMu4njyh_3RAQADAgADcwADIwQ'
+        text, markup = Builders::QuestionBuilder.call(question: QUESTIONS[message.data.size], callback_data: message.data)
+        # file_a_id = 'AgACAgIAAxkDAAIBWGIKje3GPcn5Vx6zKoQMQcPvrU-MAAJRvDEbQjRQSJuRm8i1--SHAQADAgADcwADIwQ'
+        # file_b_id = 'AgACAgIAAxkDAAIBXGIKj2LZgEM5fFeVndbsRUxW13SHAAJkvDEbQjRQSGINIpgW3SlbAQADAgADcwADIwQ'
+        # file_c_id = 'AgACAgIAAxkDAAIBXWIKj2My4QNWyuaBFNqtyeIc06YiAAJlvDEbQjRQSBIy4b0cHT_PAQADAgADcwADIwQ'
+        # file_d_id = 'AgACAgIAAxkDAAIBXmIKj2TafyLluRwvM9Ia63s8SX4gAAJmvDEbQjRQSGFoLfwU7XZcAQADAgADcwADIwQ'
+        # file_e_id = 'AgACAgIAAxkDAAIBX2IKj2Xh_6uKQHC_TMbFoDQHBrmvAAJnvDEbQjRQSJMu4njyh_3RAQADAgADcwADIwQ'
+
+        file_a_id = 'AgACAgIAAxkDAAMFYhQMJ5cGrGocHcwiWemAPLZ6fMcAAhK6MRtfc6FIWJr3zDpgfS4BAAMCAANzAAMjBA'
+        file_b_id = 'AgACAgIAAxkDAAMGYhQMKL89jmpJ80EtEKMrHgABNpg6AAITujEbX3OhSJ71cIs9kyeQAQADAgADcwADIwQ'
+        file_c_id = 'AgACAgIAAxkDAAMHYhQMKYLPiK2Dcpd4O0EzPWgGHpgAAhS6MRtfc6FI5pcLmljJaY4BAAMCAANzAAMjBA'
+        file_d_id = 'AgACAgIAAxkDAAMIYhQMK4FWSiVqitrCf33Nu71fFz4AAhW6MRtfc6FIgVPC2MRqIy8BAAMCAANzAAMjBA'
+        file_e_id = 'AgACAgIAAxkDAAMJYhQMLB3BiBRVeLdU6fbHGoarg-MAAha6MRtfc6FIvaBpw3SOPpcBAAMCAANzAAMjBA'
 
         bot.api.sendMediaGroup(
           chat_id: message.from.id,
@@ -36,7 +42,7 @@ Telegram::Bot::Client.run(ENV['TELEGRAM_BOT_TOKEN']) do |bot|
           ]
         )
 
-        bot.api.send_message(chat_id: message.from.id, text: 'У каждой картинке есть описание с вариантом ответа', reply_markup: markup)
+        bot.api.send_message(chat_id: message.from.id, text: text, reply_markup: markup)
       else
         text, markup = Builders::QuestionBuilder.call(question: QUESTIONS[message.data.size], callback_data: message.data)
 
