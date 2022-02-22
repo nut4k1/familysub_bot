@@ -34,11 +34,11 @@ Telegram::Bot::Client.run(ENV['TELEGRAM_BOT_TOKEN']) do |bot|
         bot.api.sendMediaGroup(
           chat_id: message.from.id,
           media: [
-            Telegram::Bot::Types::InputMediaPhoto.new(media: file_a_id, caption: 'A) За любимым делом'),
-            Telegram::Bot::Types::InputMediaPhoto.new(media: file_b_id, caption: 'B) С семьёй'),
-            Telegram::Bot::Types::InputMediaPhoto.new(media: file_c_id, caption: 'C) Супрематическим, пожалуй'),
-            Telegram::Bot::Types::InputMediaPhoto.new(media: file_d_id, caption: 'D) Во всей красе'),
-            Telegram::Bot::Types::InputMediaPhoto.new(media: file_e_id, caption: 'E) В образе героини любимого фильма'),
+            Telegram::Bot::Types::InputMediaPhoto.new(media: file_a_id),
+            Telegram::Bot::Types::InputMediaPhoto.new(media: file_b_id),
+            Telegram::Bot::Types::InputMediaPhoto.new(media: file_c_id),
+            Telegram::Bot::Types::InputMediaPhoto.new(media: file_d_id),
+            Telegram::Bot::Types::InputMediaPhoto.new(media: file_e_id),
           ]
         )
 
